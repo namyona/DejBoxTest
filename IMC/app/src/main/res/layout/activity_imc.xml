@@ -93,7 +93,8 @@
         android:layout_height="wrap_content"
         android:text="CALCULER L'IMC"
         android:textColor="#FFFFFF"
-        android:background="#1F5E00"
+        android:textStyle="bold"
+        android:background="#9F00FF"
         android:layout_below="@id/mega"
         android:layout_marginLeft="25dip"
         />
@@ -103,7 +104,8 @@
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:text="EFFACER"
-        android:background="#D99100"
+        android:textStyle="bold"
+        android:background="#9F00FF"
         android:layout_below="@id/mega"
         android:layout_alignRight="@id/taille"
         android:layout_marginRight="25dip"
@@ -113,16 +115,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Résultat:"
-        android:textColor="#0FF00F"
+        android:textColor="#9F00FF"
+        android:textStyle="bold"
         android:layout_below="@id/calcul"
         />
     <TextView
         android:id="@+id/result"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="Cliquer sur le bouton « Calculer l'IMC » pour obtenir un résultat."
         android:layout_below="@id/resultPre"
         />
+    <TextView
+        android:id="@+id/tinterpret"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="GRAPH D'INTERPRETATION CI-APRES"
+        android:layout_below="@id/result"
+        android:textStyle="italic"
+        android:textColor="#FF00F0"
+        android:textSize="18dp"
+        />
+
+    <ImageView
+        android:id="@+id/interpret"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img2"
+
+        android:contentDescription="interpretation"
+        android:layout_marginTop="-110dp"
+        android:layout_below="@id/tinterpret"
+
+        />
+
 
 </RelativeLayout>
 </ScrollView>

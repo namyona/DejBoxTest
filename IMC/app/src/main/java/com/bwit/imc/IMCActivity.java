@@ -38,6 +38,7 @@ public class IMCActivity extends ActionBarActivity {
 }
 */
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -57,7 +58,7 @@ public class IMCActivity extends Activity {
     // La chaîne de caractères par défaut
     private final String defaut = "Vous devez cliquer sur le bouton « Calculer l'IMC » pour obtenir un résultat.";
     // La chaîne de caractères de la megafonction
-    private final String megaString = "Vous faites un poids parfait ! Wahou ! Trop fort ! On dirait Brad Pitt (si vous êtes un homme)/Angelina Jolie (si vous êtes une femme)/Willy (si vous êtes un orque) !";
+    private final String megaString = "Vous faites un poids parfait !comme un sepele ) !";
 
     Button envoyer = null;
     Button raz = null;
@@ -147,7 +148,7 @@ public class IMCActivity extends Activity {
 
                 // Puis on vérifie que la taille est cohérente
                 if(tValue == 0)
-                    Toast.makeText(IMCActivity.this, "Hého, tu es un Minipouce ou quoi ?", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IMCActivity.this, "Hého, tu es sepele ou quoi ?", Toast.LENGTH_SHORT).show();
                 else {
                     float pValue = Float.valueOf(p);
                     // Si l'utilisateur a indiqué que la taille était en centimètres
@@ -158,6 +159,8 @@ public class IMCActivity extends Activity {
                     tValue = (float)Math.pow(tValue, 2);
                     float imc = pValue / tValue;
                     result.setText("Votre IMC est " + String.valueOf(imc));
+                    result.setTextColor(Color.MAGENTA);
+                    result.setTextSize(30);
                 }
             } else
                 result.setText(megaString);
