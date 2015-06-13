@@ -1,42 +1,5 @@
 package com.bwit.imc;
-/*
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-
-public class IMCActivity extends ActionBarActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_imc);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_imc, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}
-*/
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -50,9 +13,17 @@ import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class IMCActivity extends Activity {
     // La chaîne de caractères par défaut
@@ -101,6 +72,39 @@ public class IMCActivity extends Activity {
         //taille.setOnKeyListener(modificationListener);
         //poids.setOnKeyListener(modificationListener);
         mega.setOnClickListener(checkedListener);
+
+        // UNIVERSAL IMAGE LOADER SETUP
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheOnDisc(true).cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .memoryCache(new WeakMemoryCache())
+                .discCacheSize(100 * 1024 * 1024).build();
+
+        ImageLoader.getInstance().init(config);
+        // END - UNIVERSAL IMAGE LOADER SETUP
+        // image sur un serveur
+        String url = "http://javatechig.com/wp-content/uploads/2014/05/UniversalImageLoader-620x405.png";
+        /*Image est dans drawable*/
+        //String url = "drawable://"+R.drawable.img2;
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        int fallback = 0;
+        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
+                .cacheOnDisk(true).resetViewBeforeLoading(true)
+                .showImageForEmptyUri(fallback)
+                .showImageOnFail(fallback)
+                .showImageOnLoading(fallback).build();
+
+        //INITIALIZE IMAGE VIEW
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+        imageLoader.displayImage(url,imageView,options);
+
+
+
     }
 
   /*
